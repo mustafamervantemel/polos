@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom animations for Hero Banner */
-@keyframes fade-in {
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased;
+  }
+}
+
+/* Custom Animations */
+@keyframes fade-in-up {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -11,6 +21,37 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -23,10 +64,149 @@
   }
 }
 
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 170, 41, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 170, 41, 0.6);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
 .animate-fade-in {
-  animation: fade-in 1.2s ease-out;
+  animation: fade-in 1s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.8s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s ease-out;
 }
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out;
+}
+
+/* Hover Effects */
+.hover-lift {
+  @apply transition-transform duration-300 ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.hover-glow {
+  @apply transition-shadow duration-300;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 10px 40px rgba(255, 170, 41, 0.3);
+}
+
+/* Button Animations */
+.btn-primary {
+  @apply bg-brand-orange text-white px-6 py-3 rounded-lg font-semibold;
+  @apply transition-all duration-300 ease-out;
+  @apply hover:bg-primary-600 hover:shadow-lg hover:shadow-brand-orange/50;
+  @apply active:scale-95;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-secondary {
+  @apply bg-white text-brand-black px-6 py-3 rounded-lg font-semibold border-2 border-brand-black;
+  @apply transition-all duration-300 ease-out;
+  @apply hover:bg-brand-black hover:text-white hover:shadow-lg;
+  @apply active:scale-95;
+}
+
+/* Card Animations */
+.card-hover {
+  @apply transition-all duration-300 ease-out;
+  @apply hover:shadow-xl hover:shadow-brand-orange/20;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #FFAA29 0%, #e67500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading Skeleton */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }

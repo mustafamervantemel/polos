@@ -33,13 +33,13 @@ const AdminPanel = () => {
     if (file) {
       // Check file size (5MB limit)
       if (file.size > 5 * 1024 * 1024) {
-        alert('Dosya boyutu 5MB\'dan küçük olmalıdır.');
+        alert('Die Dateigröße muss kleiner als 5MB sein.');
         return;
       }
 
       // Check file type
       if (!file.type.startsWith('image/')) {
-        alert('Sadece resim dosyaları yükleyebilirsiniz.');
+        alert('Sie können nur Bilddateien hochladen.');
         return;
       }
 
@@ -106,7 +106,7 @@ const AdminPanel = () => {
       setShowAddForm(false);
     } catch (error) {
       console.error('Error uploading image:', error);
-      alert('Resim yüklenirken hata oluştu.');
+      alert('Fehler beim Hochladen des Bildes.');
     } finally {
       setUploading(false);
     }
@@ -157,15 +157,15 @@ const AdminPanel = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <ChefHat className="h-8 w-8 text-amber-600" />
-              <h1 className="text-2xl font-bold text-gray-900">Yönetim Paneli</h1>
+              <ChefHat className="h-8 w-8 text-primary-600" />
+              <h1 className="text-2xl font-bold text-gray-900">Verwaltungspanel</h1>
             </div>
             <button
               onClick={handleLogout}
               className="flex items-center space-x-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200"
             >
               <LogOut className="h-4 w-4" />
-              <span>Çıkış</span>
+              <span>Abmelden</span>
             </button>
           </div>
         </div>
@@ -177,10 +177,10 @@ const AdminPanel = () => {
         <div className="mb-8">
           <button
             onClick={() => setShowAddForm(true)}
-            className="flex items-center space-x-2 bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition-colors duration-200"
+            className="flex items-center space-x-2 bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors duration-200"
           >
             <Plus className="h-5 w-5" />
-            <span>Yeni Menü Öğesi Ekle</span>
+            <span>Neues Menüelement hinzufügen</span>
           </button>
         </div>
 
@@ -191,7 +191,7 @@ const AdminPanel = () => {
             {categories.map(category => (
               <div key={category} className="flex items-center bg-gray-200 rounded px-2 py-1">
                 <span className="mr-2">{category}</span>
-                <button onClick={() => deleteCategory(category)} className="text-red-500 hover:text-red-700 text-xs">Sil</button>
+                <button onClick={() => deleteCategory(category)} className="text-red-500 hover:text-red-700 text-xs">Löschen</button>
               </div>
             ))}
           </div>
@@ -200,13 +200,13 @@ const AdminPanel = () => {
               type="text"
               value={newCategory}
               onChange={e => setNewCategory(e.target.value)}
-              placeholder="Yeni kategori"
+              placeholder="Neue Kategorie"
               className="px-2 py-1 border rounded"
             />
             <button
               onClick={() => { if(newCategory.trim()) { addCategory(newCategory.trim()); setNewCategory(''); } }}
-              className="bg-amber-600 text-white px-3 py-1 rounded hover:bg-amber-700 text-sm"
-            >Ekle</button>
+              className="bg-primary-600 text-white px-3 py-1 rounded hover:bg-primary-700 text-sm"
+            >Hinzufügen</button>
           </div>
         </div>
 
@@ -217,7 +217,7 @@ const AdminPanel = () => {
               <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-bold text-gray-900">
-                    {editingId ? 'Menü Öğesini Düzenle' : 'Yeni Menü Öğesi Ekle'}
+                    {editingId ? 'Menüelement bearbeiten' : 'Neues Menüelement hinzufügen'}
                   </h2>
                   <button
                     onClick={handleCancel}
@@ -230,26 +230,26 @@ const AdminPanel = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Öğe Adı
+                      Elementname
                     </label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       required
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Açıklama
+                      Beschreibung
                     </label>
                     <textarea
                       value={formData.description}
                       onChange={(e) => setFormData({...formData, description: e.target.value})}
                       rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -257,14 +257,14 @@ const AdminPanel = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Fiyat (₺)
+                        Preis (CHF)
                       </label>
                       <input
                         type="number"
                         step="0.01"
                         value={formData.price}
                         onChange={(e) => setFormData({...formData, price: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         required
                       />
                     </div>
@@ -276,10 +276,10 @@ const AdminPanel = () => {
                       <select
                         value={formData.category}
                         onChange={(e) => setFormData({...formData, category: e.target.value})}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         required
                       >
-                        <option value="">Kategori Seçin</option>
+                        <option value="">Kategorie auswählen</option>
                         {categories.map(category => (
                           <option key={category} value={category}>{category}</option>
                         ))}
@@ -289,11 +289,11 @@ const AdminPanel = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Resim
+                      Bild
                     </label>
                     <div className="space-y-4">
                       {/* File Upload */}
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-amber-500 transition-colors">
+                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary-500 transition-colors">
                         <input
                           type="file"
                           accept="image/*"
@@ -304,7 +304,7 @@ const AdminPanel = () => {
                         <label htmlFor="image-upload" className="cursor-pointer">
                           <div className="flex flex-col items-center space-y-2">
                             <Upload className="h-8 w-8 text-gray-400" />
-                            <span className="text-sm text-gray-600">Resim seçmek için tıklayın</span>
+                            <span className="text-sm text-gray-600">Klicken Sie, um ein Bild auszuwählen</span>
                             <span className="text-xs text-gray-500">PNG, JPG, JPEG (Max 5MB)</span>
                           </div>
                         </label>
@@ -315,7 +315,7 @@ const AdminPanel = () => {
                         <div className="relative">
                           <img
                             src={imagePreview || formData.image}
-                            alt="Önizleme"
+                            alt="Vorschau"
                             className="w-full h-48 object-cover rounded-lg border"
                           />
                           <button
@@ -333,7 +333,7 @@ const AdminPanel = () => {
                       )}
 
                       {/* URL Input as Alternative */}
-                      <div className="text-center text-sm text-gray-500">veya</div>
+                      <div className="text-center text-sm text-gray-500">oder</div>
                       <input
                         type="url"
                         value={formData.image}
@@ -342,22 +342,22 @@ const AdminPanel = () => {
                           setImagePreview('');
                           setUploadedFile(null);
                         }}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                        placeholder="https://ornek.com/resim.jpg"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        placeholder="https://beispiel.com/bild.jpg"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Hazırlanma Süresi
+                      Zubereitungszeit
                     </label>
                     <input
                       type="text"
                       value={formData.preparationTime}
                       onChange={(e) => setFormData({...formData, preparationTime: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                      placeholder="örn: 15-20 dakika"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      placeholder="z.B.: 15-20 Minuten"
                       required
                     />
                   </div>
@@ -368,10 +368,10 @@ const AdminPanel = () => {
                       id="available"
                       checked={formData.available}
                       onChange={(e) => setFormData({...formData, available: e.target.checked})}
-                      className="h-4 w-4 text-amber-600 focus:ring-amber-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                     />
                     <label htmlFor="available" className="ml-2 block text-sm text-gray-700">
-                      Sipariş için mevcut
+                      Für Bestellungen verfügbar
                     </label>
                   </div>
 
@@ -381,15 +381,15 @@ const AdminPanel = () => {
                       onClick={handleCancel}
                       className="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors duration-200"
                     >
-                      İptal
+                      Abbrechen
                     </button>
                     <button
                       type="submit"
                       disabled={uploading}
-                      className="flex items-center space-x-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center space-x-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Save className="h-4 w-4" />
-                      <span>{uploading ? 'Yükleniyor...' : (editingId ? 'Güncelle' : 'Ekle')} Öğe</span>
+                      <span>{uploading ? 'Wird hochgeladen...' : (editingId ? 'Aktualisieren' : 'Hinzufügen')}</span>
                     </button>
                   </div>
                 </form>
@@ -401,7 +401,7 @@ const AdminPanel = () => {
         {/* Menu Items Table */}
         <div className="bg-white shadow-sm rounded-lg overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">Menü Öğeleri ({menuItems.length})</h2>
+            <h2 className="text-xl font-semibold text-gray-900">Menüelemente ({menuItems.length})</h2>
           </div>
           
           <div className="overflow-x-auto">
@@ -409,19 +409,19 @@ const AdminPanel = () => {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Öğe
+                    Element
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Kategori
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Fiyat
+                    Preis
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Durum
+                    Status
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    İşlemler
+                    Aktionen
                   </th>
                 </tr>
               </thead>
@@ -442,12 +442,12 @@ const AdminPanel = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 py-1 text-xs font-medium rounded-full bg-amber-100 text-amber-800">
+                      <span className="px-2 py-1 text-xs font-medium rounded-full bg-primary-100 text-primary-800">
                         {item.category}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      ₺{item.price.toFixed(2)}
+                      CHF {item.price.toFixed(2)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`px-2 py-1 text-xs font-medium rounded-full ${
@@ -455,14 +455,14 @@ const AdminPanel = () => {
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-red-100 text-red-800'
                       }`}>
-                        {item.available ? 'Mevcut' : 'Mevcut Değil'}
+                        {item.available ? 'Verfügbar' : 'Nicht verfügbar'}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
                         <button
                           onClick={() => handleEdit(item)}
-                          className="text-amber-600 hover:text-amber-700 transition-colors duration-200"
+                          className="text-primary-600 hover:text-primary-700 transition-colors duration-200"
                         >
                           <Edit className="h-5 w-5" />
                         </button>

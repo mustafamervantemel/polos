@@ -33,56 +33,395 @@ export function useMenu() {
 
 export function MenuProvider({ children }: { children: React.ReactNode }) {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
+    // BOX Kategorisi
     {
-      id: '1',
-      name: 'Margherita Pizza',
-      description: 'Taze domates sosu, mozzarella ve fes ileğen, ince hamur üzerinde',
-      price: 45.99,
+      id: 'box-1',
+      name: 'Döner Box mit Kalbfleisch',
+      description: 'Frisches Kalbfleisch-Döner mit Salat, Gemüse und ausgewählten Saucen',
+      price: 13.00,
+      category: 'Box',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '10-15 Minuten'
+    },
+    {
+      id: 'box-2',
+      name: 'Poulet Box',
+      description: 'Zartes Hähnchenfleisch mit Pommes, Salat und verschiedenen Saucen',
+      price: 13.00,
+      category: 'Box',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'box-3',
+      name: 'Poulet Box vom Grill',
+      description: 'Gegrilltes Hähnchen vom Grill mit frischem Gemüse und Saucen',
+      price: 15.00,
+      category: 'Box',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'box-4',
+      name: 'Lamm Box vom Grill',
+      description: 'Zartes Lammfleisch vom Grill mit Gemüse und speziellen Gewürzen',
+      price: 16.00,
+      category: 'Box',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'box-5',
+      name: 'Chicken Nuggets Box',
+      description: 'Knusprige Hähnchennuggets mit Pommes und Saucen',
+      price: 13.00,
+      category: 'Box',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '10-15 Minuten'
+    },
+    {
+      id: 'box-6',
+      name: 'Falafel Box',
+      description: 'Knusprige Falafel mit Hummus, Salat und Gemüse',
+      price: 13.00,
+      category: 'Box',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'box-7',
+      name: 'Pommes Box',
+      description: 'Pommes Frites mit verschiedenen Saucen',
+      price: 8.00,
+      category: 'Box',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '5-10 Minuten'
+    },
+    {
+      id: 'box-8',
+      name: 'Vegan Box',
+      description: 'Vegane Option mit frischem Gemüse, Falafel und veganen Saucen',
+      price: 15.00,
+      category: 'Box',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    // PIZZA Kategorisi
+    {
+      id: 'pizza-1',
+      name: 'Pizza Margherita',
+      description: 'Klassische Margherita mit Tomatensauce, Mozzarella und frischem Basilikum',
+      price: 15.00,
       category: 'Pizza',
       image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
       available: true,
-      preparationTime: '15-20 dakika'
+      preparationTime: '15-20 Minuten'
     },
     {
-      id: '2',
-      name: 'Izgara Somon',
-      description: 'Otlar ve limon tereyağı ile taze Atlantik somonu',
-      price: 89.99,
-      category: 'Ana Yemek',
-      image: 'https://images.pexels.com/photos/1343752/pexels-photo-1343752.jpeg?auto=compress&cs=tinysrgb&w=500',
+      id: 'pizza-2',
+      name: 'Pizza Salami',
+      description: 'Tomatensauce, Mozzarella und würzige Salami',
+      price: 17.00,
+      category: 'Pizza',
+      image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
       available: true,
-      preparationTime: '20-25 dakika'
+      preparationTime: '15-20 Minuten'
     },
     {
-      id: '3',
-      name: 'Sezar Salata',
-      description: 'Gevrek marul, parmesan, kruton ve Sezar sosu',
-      price: 35.99,
-      category: 'Salatalar',
-      image: 'https://images.pexels.com/photos/1213710/pexels-photo-1213710.jpeg?auto=compress&cs=tinysrgb&w=500',
+      id: 'pizza-3',
+      name: 'Pizza Hawaii',
+      description: 'Tomatensauce, Mozzarella, Schinken und Ananas',
+      price: 18.00,
+      category: 'Pizza',
+      image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
       available: true,
-      preparationTime: '10-15 dakika'
+      preparationTime: '15-20 Minuten'
     },
     {
-      id: '4',
-      name: 'Çikolatalı Lav Keki',
-      description: 'Eriymiş merkezli sıcak çikolata keki ve vanilya dondurması',
-      price: 28.99,
-      category: 'Tatlılar',
-      image: 'https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=500',
+      id: 'pizza-4',
+      name: 'Pizza Tonno',
+      description: 'Tomatensauce, Mozzarella und Thunfisch',
+      price: 17.00,
+      category: 'Pizza',
+      image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
       available: true,
-      preparationTime: '12-18 dakika'
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pizza-5',
+      name: 'Pizza Funghi',
+      description: 'Tomatensauce, Mozzarella und frische Champignons',
+      price: 17.00,
+      category: 'Pizza',
+      image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pizza-6',
+      name: 'Pizza Vegan',
+      description: 'Vegane Pizza mit Gemüse und veganem Käse',
+      price: 17.00,
+      category: 'Pizza',
+      image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pizza-7',
+      name: 'Pizza Prosciutto',
+      description: 'Tomatensauce, Mozzarella und Prosciutto',
+      price: 17.00,
+      category: 'Pizza',
+      image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pizza-8',
+      name: 'Pizza Prosciutto Funghi',
+      description: 'Tomatensauce, Mozzarella, Prosciutto und Champignons',
+      price: 18.00,
+      category: 'Pizza',
+      image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pizza-9',
+      name: 'Pizza Kebab',
+      description: 'Tomatensauce, Mozzarella und gewürztes Dönerfleisch',
+      price: 17.00,
+      category: 'Pizza',
+      image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    // PIDE Kategorisi
+    {
+      id: 'pide-1',
+      name: 'Pide Käse',
+      description: 'Traditionelles Pide mit geschmolzenem Käse',
+      price: 15.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'pide-2',
+      name: 'Pide Spinat und Käse',
+      description: 'Pide mit frischem Spinat und geschmolzenem Käse',
+      price: 17.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pide-3',
+      name: 'Pide Spinat und Käse mit Ei',
+      description: 'Pide mit Spinat, Käse und Spiegelei',
+      price: 18.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pide-4',
+      name: 'Pide Sucuk',
+      description: 'Pide mit würziger türkischer Sucuk-Wurst',
+      price: 16.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'pide-5',
+      name: 'Pide Poulet und Gemüse',
+      description: 'Pide mit gegrilltem Hähnchen und frischem Gemüse',
+      price: 18.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pide-6',
+      name: 'Pide Lamm und Gemüse',
+      description: 'Pide mit zartem Lammfleisch und Gemüse',
+      price: 19.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'pide-7',
+      name: 'Pide Kebab',
+      description: 'Pide mit gewürztem Dönerfleisch und Gemüse',
+      price: 17.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'pide-8',
+      name: 'Pide Gemüse',
+      description: 'Veganes Pide mit frischem Gemüse und Kräutern',
+      price: 17.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'pide-9',
+      name: 'Pide Vegan',
+      description: 'Veganes Pide mit pflanzlichen Zutaten',
+      price: 17.00,
+      category: 'Pide',
+      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    // SNACKS Kategorisi
+    {
+      id: 'snack-1',
+      name: 'Classic Kebab mit Kalbfleisch',
+      description: 'Traditioneller Döner mit Kalbfleisch, Salat und Saucen (Tasche oder Flade)',
+      price: 12.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '8-12 Minuten'
+    },
+    {
+      id: 'snack-2',
+      name: 'Schwarma Kebab',
+      description: 'Schwarma mit Hähnchen-Döner, Salat und Saucen (Tasche oder Flade)',
+      price: 12.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '8-12 Minuten'
+    },
+    {
+      id: 'snack-3',
+      name: 'Vegan Kebab',
+      description: 'Veganes Kebab mit Falafel und Gemüse (Tasche oder Flade)',
+      price: 14.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '10-15 Minuten'
+    },
+    {
+      id: 'snack-4',
+      name: 'Poulet Pepito vom Grill',
+      description: 'Gegrilltes Hähnchen-Pepito mit Gewürzen',
+      price: 15.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'snack-5',
+      name: 'Poulet Kebab vom Grill mit Gemüse',
+      description: 'Gegrilltes Hähnchen-Kebab mit frischem Gemüse',
+      price: 15.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'snack-6',
+      name: 'Lamm Pepito vom Grill',
+      description: 'Gegrilltes Lamm-Pepito mit speziellen Gewürzen',
+      price: 16.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'snack-7',
+      name: 'Lamm Kebab vom Grill mit Gemüse',
+      description: 'Gegrilltes Lamm-Kebab mit frischem Gemüse',
+      price: 16.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
+    },
+    {
+      id: 'snack-8',
+      name: 'Hamburger',
+      description: 'Klassischer Hamburger mit Rindfleisch, Salat, Tomate und Saucen',
+      price: 12.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '10-15 Minuten'
+    },
+    {
+      id: 'snack-9',
+      name: 'Falafel',
+      description: 'Knusprige Falafel mit Salat und Saucen (Tasche oder Flade)',
+      price: 12.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '10-15 Minuten'
+    },
+    {
+      id: 'snack-10',
+      name: 'Gyros mit Pommes',
+      description: 'Griechisches Gyros mit Pommes Frites (Tasche oder Flade)',
+      price: 14.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '12-18 Minuten'
+    },
+    {
+      id: 'snack-11',
+      name: 'Tacos Kebab mit Käse und Pommes',
+      description: 'Tacos mit Hähnchen-Kebab, Käse und Pommes Frites',
+      price: 15.00,
+      category: 'Snacks',
+      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500',
+      available: true,
+      preparationTime: '15-20 Minuten'
     }
   ]);
   const [categories, setCategories] = useState<string[]>([
-    'Pizza', 'Ana Yemek', 'Salatalar', 'Tatlılar', 'İçecekler', 'Mezeler'
+    'Box', 'Pizza', 'Pide', 'Snacks'
   ]);
 
   // Load menu items from localStorage on mount
   useEffect(() => {
     const savedItems = localStorage.getItem('menuItems');
     if (savedItems) {
-      setMenuItems(JSON.parse(savedItems));
+      try {
+        const parsed = JSON.parse(savedItems);
+        setMenuItems(parsed);
+      } catch (error) {
+        console.error('Error loading menu items:', error);
+      }
     }
   }, []);
 

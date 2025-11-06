@@ -20,24 +20,24 @@ const AdminLogin = () => {
       await login(email, password);
       navigate('/admin');
     } catch (error) {
-      setError('Giriş yapılamadı. Lütfen bilgilerinizi kontrol edin.');
+      setError('Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Angaben.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-red-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-orange-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <div className="flex justify-center">
-            <div className="bg-amber-600 p-3 rounded-full">
+            <div className="bg-primary-600 p-3 rounded-full">
               <ChefHat className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">Admin Girişi</h2>
+          <h2 className="mt-6 text-3xl font-bold text-gray-900">Admin-Anmeldung</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Restoran menünüzü yönetmek için giriş yapın
+            Melden Sie sich an, um Ihr Restaurant-Menü zu verwalten
           </p>
         </div>
 
@@ -45,7 +45,7 @@ const AdminLogin = () => {
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                E-posta Adresi
+                E-Mail-Adresse
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -58,15 +58,15 @@ const AdminLogin = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
-                  placeholder="E-posta adresinizi girin"
+                  className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+                  placeholder="Ihre E-Mail-Adresse eingeben"
                 />
               </div>
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Şifre
+                Passwort
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -79,8 +79,8 @@ const AdminLogin = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
-                  placeholder="Şifrenizi girin"
+                  className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
+                  placeholder="Ihr Passwort eingeben"
                 />
               </div>
             </div>
@@ -96,26 +96,22 @@ const AdminLogin = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
             >
-              {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
+              {loading ? 'Anmeldung läuft...' : 'Anmelden'}
             </button>
           </div>
 
           <div className="text-center">
             <p className="text-sm text-gray-600">
-              Demo için şunları kullanın
-    
+              Für Demo verwenden Sie:
             </p>
             <p className="text-sm text-gray-600">
-              Mail: admin@bellavista.com
-            
+              E-Mail: admin@polos.ch
             </p>
             <p className="text-sm text-gray-600">
-            
-              Şifre: password123
+              Passwort: password123
             </p>
-
           </div>
         </form>
       </div>
