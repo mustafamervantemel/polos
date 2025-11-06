@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { ChefHat, Lock, User } from 'lucide-react';
@@ -11,6 +11,12 @@ const AdminLogin = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const fillDemoCredentials = () => {
+    setEmail('admin@polos.ch');
+    setPassword('password123');
+    setError('');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -19,8 +25,24 @@ const AdminLogin = () => {
       setLoading(true);
       await login(email, password);
       navigate('/admin');
-    } catch (error) {
-      setError('Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Angaben.');
+    } catch (error: any) {
+      console.error('Login error:', error);
+      let errorMessage = 'Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Angaben.';
+      
+      // Firebase error codes için daha açıklayıcı mesajlar
+      if (error?.code === 'auth/user-not-found') {
+        errorMessage = 'Dieser Benutzer existiert nicht. Bitte erstellen Sie zuerst einen Benutzer in Firebase Console.';
+      } else if (error?.code === 'auth/wrong-password') {
+        errorMessage = 'Falsches Passwort. Bitte versuchen Sie es erneut.';
+      } else if (error?.code === 'auth/invalid-email') {
+        errorMessage = 'Ungültige E-Mail-Adresse.';
+      } else if (error?.code === 'auth/too-many-requests') {
+        errorMessage = 'Zu viele fehlgeschlagene Versuche. Bitte versuchen Sie es später erneut.';
+      } else if (error?.code === 'auth/network-request-failed') {
+        errorMessage = 'Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung.';
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -102,15 +124,29 @@ const AdminLogin = () => {
             </button>
           </div>
 
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Für Demo verwenden Sie:
+          <div className="text-center bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+            <p className="text-sm font-semibold text-blue-900 mb-3">
+              Demo-Anmeldedaten:
             </p>
-            <p className="text-sm text-gray-600">
-              E-Mail: admin@polos.ch
-            </p>
-            <p className="text-sm text-gray-600">
-              Passwort: password123
+            <button
+              type="button"
+              onClick={fillDemoCredentials}
+              className="mb-3 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
+            >
+              Demo-Anmeldedaten verwenden
+            </button>
+            <div className="space-y-1 text-sm text-blue-800 mb-3">
+              <p>
+                <span className="font-medium">E-Mail:</span> admin@polos.ch
+              </p>
+              <p>
+                <span className="font-medium">Passwort:</span> password123
+              </p>
+            </div>
+            <p className="text-xs text-blue-600 pt-3 border-t border-blue-200">
+              ⚠️ Wichtig: Diese Konto muss zuerst in Firebase Console erstellt werden.
+              <br />
+              Firebase Console → Authentication → Users → Add User
             </p>
           </div>
         </form>
