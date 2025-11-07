@@ -1,9 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, Clock, MapPin, ChefHat, Settings, Sparkles, Award } from 'lucide-react';
+import { Star, Clock, MapPin, ChefHat, Sparkles, Award, ChevronLeft, ChevronRight, Phone } from 'lucide-react';
 import CallToAction from '../components/CallToAction';
+import { useMenu } from '../contexts/MenuContext';
 
 const Home = () => {
+  const { menuItems } = useMenu();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Get most popular items
+  const mostPopularItems = menuItems.filter(item => item.isMostPopular && item.available);
+  const itemsToShow = mostPopularItems.length > 0 ? mostPopularItems : menuItems.filter(item => item.available).slice(0, 4);
+  const itemsPerPage = 4;
+  const maxIndex = Math.max(0, itemsToShow.length - itemsPerPage);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -164,7 +182,7 @@ const Home = () => {
               
               <div className="space-y-5 mb-10">
                 {[
-                  { icon: MapPin, text: 'Bahnhofstrasse 123, 8001 Zürich' },
+                  { icon: MapPin, text: 'Gotthardstrasse 18, 8800 Thalwil' },
                   { icon: Clock, text: 'Täglich geöffnet: 11:00 - 22:00' },
                   { icon: Star, text: '4.9/5 Sterne • 500+ Bewertungen' }
                 ].map((item, index) => (
@@ -213,6 +231,103 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Special Items Section */}
+      {itemsToShow.length > 0 && (
+        <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between mb-12 reveal">
+              <div>
+                <h2 className="text-5xl font-black text-brand-black mb-2">
+                  Unsere <span className="gradient-text">Spezialitäten</span>
+                </h2>
+                <div className="h-1 w-24 bg-brand-orange rounded-full"></div>
+              </div>
+              {itemsToShow.length > itemsPerPage && (
+                <div className="flex gap-2">
+                  <button
+                    onClick={prevSlide}
+                    className="bg-white hover:bg-brand-orange text-gray-700 hover:text-white p-3 rounded-lg shadow-lg transition-all duration-300 hover:scale-110 border border-gray-200"
+                    aria-label="Vorherige"
+                  >
+                    <ChevronLeft className="h-6 w-6" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    className="bg-brand-orange hover:bg-primary-600 text-white p-3 rounded-lg shadow-lg transition-all duration-300 hover:scale-110"
+                    aria-label="Nächste"
+                  >
+                    <ChevronRight className="h-6 w-6" />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <div className="relative overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)` }}
+              >
+                {itemsToShow.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex-shrink-0 px-3"
+                    style={{ width: `${100 / itemsPerPage}%` }}
+                  >
+                    <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-gray-100 group card-hover flex flex-col h-full">
+                      <div className="relative overflow-hidden flex-shrink-0">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute top-4 right-4">
+                          <div className="bg-brand-orange text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                            CHF {item.price.toFixed(2)}
+                          </div>
+                        </div>
+                        {item.isMostPopular && (
+                          <div className="absolute top-4 left-4">
+                            <div className="bg-gradient-to-r from-brand-orange to-primary-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                              Meist gewählt
+                            </div>
+                          </div>
+                        )}
+                        <div className="absolute bottom-4 left-4 flex items-center gap-1">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                            ))}
+                          </div>
+                          <span className="text-white text-sm font-bold ml-2 drop-shadow-lg">(5.00)</span>
+                        </div>
+                      </div>
+                      
+                      <div className="p-6 flex flex-col flex-grow">
+                        <h3 className="text-xl font-black text-brand-black mb-3">{item.name}</h3>
+                        <p className="text-gray-600 text-sm mb-6 line-clamp-2 leading-relaxed min-h-[3rem]">
+                          {item.description}
+                        </p>
+                        <div className="mt-auto">
+                          <a
+                            href="https://wa.me/41783119692"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full bg-gradient-to-r from-brand-orange to-primary-600 text-white px-6 py-3 rounded-xl font-bold hover:from-primary-600 hover:to-brand-orange transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center justify-center space-x-2"
+                          >
+                            <Phone className="h-5 w-5" />
+                            <span>Jetzt bestellen</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-brand-orange to-primary-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -233,35 +348,7 @@ const Home = () => {
       </section>
 
       {/* Admin Access Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-md mx-auto reveal">
-            <div className="bg-white rounded-3xl shadow-xl p-10 border border-gray-100 hover-lift">
-              <div className="flex justify-center mb-6">
-                <div className="bg-gradient-to-br from-brand-orange to-primary-600 p-5 rounded-2xl shadow-lg">
-                  <Settings className="h-10 w-10 text-white" />
-                </div>
-              </div>
-              <h3 className="text-3xl font-black text-brand-black mb-4 text-center">
-                Restaurant-Verwaltung
-              </h3>
-              <p className="text-gray-600 mb-8 text-center">
-                Für Menü-Updates, Preisänderungen und neue Produkte
-              </p>
-              <Link
-                to="/admin/login"
-                className="btn-primary w-full py-4 flex items-center justify-center space-x-2 text-lg"
-              >
-                <Settings className="h-5 w-5" />
-                <span>Zur Verwaltung</span>
-              </Link>
-              <p className="text-xs text-gray-500 mt-4 text-center">
-                Nur für Restaurant-Manager
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       <CallToAction />
     </div>

@@ -109,7 +109,7 @@ service firebase.storage {
 
 ## 📱 WhatsApp Entegrasyonu
 
-WhatsApp numarası: **+41 78 311 96 92**
+WhatsApp numarası: **078 311 96 92**
 
 Tüm iletişim butonları WhatsApp'a yönlendirir.
 
@@ -160,7 +160,8 @@ Mustafa Mervan Temel
 ## 📞 İletişim
 
 - **Email**: info@polos.ch
-- **Telefon**: +41 78 311 96 92
+- **Telefon**: 078 311 96 92
+- **Adres**: Gotthardstrasse 18, 8800 Thalwil, Schweiz
 - **WhatsApp**: [WhatsApp Sipariş](https://wa.me/41783119692)
 
 ---

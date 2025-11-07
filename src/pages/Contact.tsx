@@ -59,13 +59,13 @@ const Contact = () => {
                   {
                     icon: MapPin,
                     title: 'Adresse',
-                    content: 'Bahnhofstrasse 123\n8001 Zürich, Schweiz',
+                    content: 'Gotthardstrasse 18\n8800 Thalwil, Schweiz',
                     color: 'from-brand-orange to-primary-600'
                   },
                   {
                     icon: Phone,
                     title: 'Telefon',
-                    content: '+41 78 311 96 92',
+                    content: '078 311 96 92',
                     subtitle: 'Für Reservierungen und Bestellungen über WhatsApp',
                     color: 'from-brand-orange to-primary-600'
                   },
@@ -142,11 +142,11 @@ const Contact = () => {
                       </div>
                       <p className="text-gray-700 font-medium text-lg mb-2">Interaktive Karte</p>
                       <p className="text-sm text-gray-600 mb-6">
-                        Bahnhofstrasse 123, 8001 Zürich, Schweiz
+                        Gotthardstrasse 18, 8800 Thalwil, Schweiz
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
-                          href="https://maps.google.com/?q=Bahnhofstrasse+123+8001+Zürich+Schweiz"
+                          href="https://share.google/WcW2mhMCDkJ38hQ43"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn-primary inline-flex items-center justify-center space-x-2"
@@ -173,82 +173,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-24 bg-gradient-to-br from-brand-orange/5 via-white to-brand-orange/5">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 reveal">
-            <h2 className="text-5xl font-black text-brand-black mb-6">
-              Senden Sie uns eine <span className="gradient-text">Nachricht</span>
-            </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Haben Sie eine Frage oder möchten Sie eine Reservierung vornehmen? Wir würden gerne von Ihnen hören.
-            </p>
-          </div>
-
-          <form className="reveal card-hover bg-white rounded-3xl shadow-2xl p-10 border border-gray-100">
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-bold text-brand-black mb-2">
-                  Vollständiger Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-all duration-300"
-                  placeholder="Ihr Name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-bold text-brand-black mb-2">
-                  E-Mail-Adresse
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-all duration-300"
-                  placeholder="ihre@email.com"
-                />
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <label htmlFor="subject" className="block text-sm font-bold text-brand-black mb-2">
-                Betreff
-              </label>
-              <select
-                id="subject"
-                className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-all duration-300"
-              >
-                <option value="">Betreff auswählen</option>
-                <option value="reservation">Reservierung</option>
-                <option value="catering">Catering</option>
-                <option value="feedback">Feedback</option>
-                <option value="other">Anderes</option>
-              </select>
-            </div>
-
-            <div className="mb-8">
-              <label htmlFor="message" className="block text-sm font-bold text-brand-black mb-2">
-                Nachricht
-              </label>
-              <textarea
-                id="message"
-                rows={6}
-                className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange transition-all duration-300 resize-none"
-                placeholder="Teilen Sie uns mit, wie wir Ihnen helfen können..."
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="btn-primary w-full py-5 text-lg flex items-center justify-center space-x-3 group"
-            >
-              <Send className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
-              <span>Nachricht senden</span>
-            </button>
-          </form>
-        </div>
-      </section>
 
       <CallToAction />
     </div>

@@ -53,7 +53,7 @@ const Footer = () => (
               <div className="bg-brand-orange/20 p-2 rounded-lg mr-3 group-hover:bg-brand-orange transition-colors duration-300">
                 <Phone className="h-4 w-4" />
               </div>
-              <span>+41 78 311 96 92</span>
+              <span>078 311 96 92</span>
             </a>
             <a 
               href="mailto:info@polos.ch" 
@@ -64,12 +64,17 @@ const Footer = () => (
               </div>
               <span>info@polos.ch</span>
             </a>
-            <div className="flex items-start text-gray-300 group">
+            <a
+              href="https://share.google/WcW2mhMCDkJ38hQ43"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start text-gray-300 hover:text-brand-orange transition-colors duration-300 group"
+            >
               <div className="bg-brand-orange/20 p-2 rounded-lg mr-3 group-hover:bg-brand-orange transition-colors duration-300 mt-1">
                 <MapPin className="h-4 w-4" />
               </div>
-              <span>Bahnhofstrasse 123<br />8001 Zürich, Schweiz</span>
-            </div>
+              <span>Gotthardstrasse 18<br />8800 Thalwil, Schweiz</span>
+            </a>
           </div>
         </div>
 

@@ -26,7 +26,7 @@ const CallToAction = () => {
             <div className="bg-white/20 rounded-full p-2 group-hover:rotate-12 transition-transform duration-300">
               <Phone className="h-6 w-6" />
             </div>
-            <span>WhatsApp Bestellung: +41 78 311 96 92</span>
+            <span>WhatsApp Bestellung: 078 311 96 92</span>
             <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
           </a>
         </div>

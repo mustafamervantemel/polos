@@ -9,6 +9,7 @@ export interface MenuItem {
   image: string;
   available: boolean;
   preparationTime: string;
+  isMostPopular?: boolean;
 }
 
 interface MenuContextType {

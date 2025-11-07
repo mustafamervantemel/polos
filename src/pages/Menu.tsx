@@ -97,10 +97,15 @@ const Menu = () => {
                       </span>
                     </div>
                   )}
-                  <div className="absolute top-4 left-4">
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <span className="bg-brand-orange text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                       {item.category}
                     </span>
+                    {item.isMostPopular && (
+                      <span className="bg-gradient-to-r from-brand-orange to-primary-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg">
+                        Meist gewählt
+                      </span>
+                    )}
                   </div>
                   <div className="absolute top-4 right-4">
                     <div className="bg-white/95 backdrop-blur-sm rounded-full p-2 shadow-lg group-hover:rotate-12 transition-transform duration-300">
